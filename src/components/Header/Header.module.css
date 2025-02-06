@@ -1,0 +1,14 @@
+.header {
+	grid-area: h;
+	background-color: rgb(144, 168, 119);
+	display: flex;
+}
+.header img {
+width: 50px;
+margin: auto 5px;
+margin-left: 35px;
+}
+.header p {
+	color: white;
+	margin: auto 7px;
+}

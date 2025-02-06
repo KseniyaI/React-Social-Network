@@ -1,0 +1,45 @@
+.dialogs {
+	display: grid;
+	grid-template-columns: 2fr 10fr;
+}
+.dialogs a {
+	color: #A9A9A9;
+	text-decoration: none;
+}
+.dialogs a:focus {
+	color: #333631;
+	font-weight: 500;
+}
+
+.dialogsItems {
+	padding: 10px;
+	color: #A9A9A9;
+	
+	
+}
+.dialogsItems .active {
+	color: #333631;
+}
+
+.avatarDialog {
+	display: flex;
+	align-items: center;
+}
+
+.avatar img {
+	width: 40px;
+	height: 40px;
+	border-radius: 30px;
+	padding: 3px;
+	
+}
+
+.dialog {
+	padding: 5px;	
+}
+
+.messages {
+	padding: 10px;
+	color: #333631;
+}
+
