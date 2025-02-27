@@ -1,9 +1,17 @@
+import axios from 'axios';
 import s from './Users.module.css';
+import userPhoto from '../../assets/images/user.png';
 
 let Users = (props) => {
 
 	if (props.users.length === 0) {
-		props.setUsers( [
+
+		axios.get("https://social-network.samuraijs.com/api/1.0/users")
+			.then(response => {
+				props.setUsers(response.data.items);
+			});
+
+		/* props.setUsers( [
 			{
 				id: 1, photoUrl: 'https://cameralabs.org/media/lab18/12/28-1/Avstraliyskie-pozharnye-s-zhivotnymi-v-blagotvoritelnom-kalendare-2019_1.jpg',
 				followed: false, fullName: 'Dmitry', status: 'I am a sporty', location: { country: 'Russia', city: 'Perm' }
@@ -17,7 +25,7 @@ let Users = (props) => {
 				followed: false, fullName: 'Sasha', status: 'I am skiing', location: { country: 'Austria', city: 'Zell am See' }
 			}
 
-		] )
+		] ) */
 	}
 
 
@@ -26,7 +34,7 @@ let Users = (props) => {
 			props.users.map(u => <div key={u.id}>
 				<span>
 					<div>
-						<img src={u.photoUrl} className={s.userPhoto} />
+						<img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto} />
 					</div>
 					<div>
 						{u.followed
@@ -36,12 +44,12 @@ let Users = (props) => {
 				</span>
 				<span>
 					<span>
-						<div>{u.fullName}</div>
+						<div>{u.name}</div>
 						<div>{u.status}</div>
 					</span>
 					<span>
-						<div>{u.location.country}</div>
-						<div>{u.location.city}</div>
+						<div>{"u.location.country"}</div>
+						<div>{"u.location.city"}</div>
 					</span>
 				</span>
 			</div>)
