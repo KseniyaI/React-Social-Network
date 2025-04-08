@@ -2,13 +2,31 @@
 	grid-area: h;
 	background-color: rgb(144, 168, 119);
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 20px;
 }
-.header img {
-width: 50px;
-margin: auto 5px;
+
+.logoBlock {
+	display: flex;
+}
+.logoBlock img {
 margin-left: 35px;
+width: 50px;
+height: 50px;
+object-fit: cover;
+margin-right: 10px;
 }
 .header p {
 	color: white;
 	margin: auto 7px;
+}
+
+.loginBlock {
+	align-items: flex-end;
+	margin-right: 35px;
+	color: white;
+}
+.loginBlock a {
+	color: white;
 }

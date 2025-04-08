@@ -6,6 +6,7 @@ import React from 'react';
 import Preloader from '../common/Preloader/Preloader';
 
 class UsersContainer extends React.Component {
+	
 	componentDidMount() {
 		this.props.toggleIsFetching(true);
 		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
@@ -75,11 +76,6 @@ let mapStateToProps = (state) => {
 	}
 } */
 
-export default connect(mapStateToProps, {
-	follow,
-	unfollow,
-	setUsers,
-	setCurrentPage,
-	setTotalUsersCount,
-	toggleIsFetching
-	}) (UsersContainer);
+export default connect(mapStateToProps, 
+	{follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching}) 
+	(UsersContainer);

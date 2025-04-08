@@ -3,9 +3,8 @@ import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
-debugger
 	return <div>
-		<ProfileInfo />
+		<ProfileInfo profile={props.profile}/>
 		<MyPostsContainer store={props.store} />
 	</div>
 }
