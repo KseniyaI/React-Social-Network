@@ -1,4 +1,5 @@
 import { type } from "@testing-library/user-event/dist/type";
+import { usersAPI } from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -20,9 +21,9 @@ const profileReducer = (state = initialState, action) => {
 			return {
 				...state,
 				posts: [
-					...state.posts,	{ 
-						id: state.posts.length + 1, 
-						message: state.newPostText, 
+					...state.posts, {
+						id: state.posts.length + 1,
+						message: state.newPostText,
 						likesCount: 0
 					}
 				],
@@ -33,19 +34,28 @@ const profileReducer = (state = initialState, action) => {
 				...state,
 				newPostText: action.newText
 			};
-			case SET_USER_PROFILE:
-				return {
-					...state, 
-					profile: action.profile
-				};
+		case SET_USER_PROFILE:
+			return {
+				...state,
+				profile: action.profile
+			};
 		default:
 			return state;
 	}
 };
 
-	export const addPostActionCreater = () => ({ type: ADD_POST })
-	export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
-	export const updateNewPostTextActionCreater = (text) =>
-		({ type: UPDATE_NEW_POST_TEXT, newText: text })
+export const addPostActionCreater = () => ({ type: ADD_POST })
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
+export const updateNewPostTextActionCreater = (text) =>
+	({ type: UPDATE_NEW_POST_TEXT, newText: text })
 
-	export default profileReducer;
+export const getUserProfile = (userId) => {
+	return (dispatch) => {
+		usersAPI.getProfile(userId)
+			.then(response => {
+				dispatch(setUserProfile(response.data));
+			});
+	}
+}
+
+export default profileReducer;

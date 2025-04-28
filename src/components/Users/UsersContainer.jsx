@@ -4,7 +4,6 @@ import Users from './Users';
 import React from 'react';
 import Preloader from '../common/Preloader/Preloader';
 import { usersAPI } from '../../api/api';
-//import { getUsers } from '../../api/api';
 
 class UsersContainer extends React.Component {
 	componentDidMount() {

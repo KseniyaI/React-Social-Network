@@ -3,6 +3,7 @@ import s from './Dialogs.module.css';
 import Message from './Message/Message';
 import React from 'react';
 import { addMessageActionCreater, updateNewMessageTextActionCreater } from '../../redux/dialogs-reducer';
+import { Navigate } from 'react-router-dom';
 
 const Dialogs = (props) => {
 
@@ -22,6 +23,7 @@ const Dialogs = (props) => {
 		props.updateNewMessageText(text);
 	}
 
+	if (!props.isAuth) return <Navigate to="/login"/>; //props.isAuth == false
 	
 	return (
 		<div className={s.dialogs}>
