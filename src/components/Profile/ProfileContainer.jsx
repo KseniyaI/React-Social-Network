@@ -1,12 +1,11 @@
 import Profile from './Profile';
 import s from './Profile.module.css';
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUserProfile } from '../../redux/profile-reducer';
 import { Navigate, useParams } from 'react-router-dom';
-import { getUser, usersAPI } from '../../api/api';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 function withRouter(Children){
 	return(props) => 	{
@@ -36,12 +35,12 @@ class ProfileContainer extends React.Component {
 	}
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer); //hoc
-
 let mapStateToProps = (state) => ({
-	profile: state.profilePage.profile,
+	profile: state.profilePage.profile
 })
 
-let WithUrlDataContaierComponent = withRouter(AuthRedirectComponent);
-
-export default connect(mapStateToProps, {getUserProfile}) (WithUrlDataContaierComponent);
+export default compose(
+	connect(mapStateToProps, {getUserProfile}),
+	withRouter,
+	//withAuthRedirect
+)(ProfileContainer);
